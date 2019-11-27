@@ -1,11 +1,11 @@
 function parser(input) {
-  var sorted = [...input].sort();
-  var openFirst = sorted[0] == "(";
+  let sorted = [...input].sort();
+  let openFirst = sorted[0] == "(";
 
-  var changeIndex = sorted.indexOf(openFirst ? ")" : "(");
+  let changeIndex = sorted.indexOf(openFirst ? ")" : "(");
 
-  var set1 = changeIndex;
-  var set2 = input.length - changeIndex;
+  let set1 = changeIndex;
+  let set2 = input.length - changeIndex;
 
   return (openFirst ? 1 : -1) * (set1 - set2);
 }

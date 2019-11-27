@@ -4,11 +4,22 @@
 	"description": "Advent of Code 2005",
 	"main": "index.js",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"test": "jest"
+	},
+	"jest": {
+		"transform": {
+			"^.+\\.jsx?$": "babel-jest"
+		}
 	},
 	"author": "Dominic Hartjes",
 	"license": "ISC",
 	"dependencies": {
 		"node-fetch": "^2.6.0"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.7.4",
+		"@babel/preset-env": "^7.7.4",
+		"babel-jest": "^24.9.0",
+		"jest": "^24.9.0"
 	}
 }

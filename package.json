@@ -1,0 +1,11 @@
+{
+	"name": "@dhartjes/adventofcode-2005",
+	"version": "1.0.0",
+	"description": "Advent of Code 2005",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"author": "Dominic Hartjes",
+	"license": "ISC"
+}

@@ -4,20 +4,29 @@
 	"description": "Advent of Code 2005",
 	"main": "index.js",
 	"scripts": {
-		"test": "jest"
+		"test": "jest",
+		"compile": "babel src --out-dir .compiled --source-maps --watch"
 	},
 	"jest": {
 		"transform": {
 			"^.+\\.jsx?$": "babel-jest"
-		}
+		},
+		"testPathIgnorePatterns": [
+			"/node_modules/",
+			".compiled"
+		]
 	},
 	"author": "Dominic Hartjes",
 	"license": "ISC",
 	"dependencies": {
-		"node-fetch": "^2.6.0"
+		"core-js": "^3.4.4",
+		"node-fetch": "^2.6.0",
+		"regenerator-runtime": "^0.13.3"
 	},
 	"devDependencies": {
+		"@babel/cli": "^7.7.4",
 		"@babel/core": "^7.7.4",
+		"@babel/node": "^7.7.4",
 		"@babel/preset-env": "^7.7.4",
 		"babel-jest": "^24.9.0",
 		"jest": "^24.9.0"

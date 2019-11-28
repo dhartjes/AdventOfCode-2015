@@ -1,7 +1,7 @@
 import parser from "./directionsParser";
 import fetch from "node-fetch";
 
-(async () => {
+let getAocInput = async () => {
   var response = await fetch("https://adventofcode.com/2015/day/1/input", {
     credentials: "include",
     headers: {
@@ -10,7 +10,16 @@ import fetch from "node-fetch";
     }
   }); /*?+*/
 
-  var myJson = await response.text(); /*?+*/
+  return await response.text(); /*?+*/
+};
 
-  parser(myJson); /*?+*/
-})();
+parser(await getAocInput()); /*?+*/
+
+// .then(result => {
+//   parser(result);
+// })
+// .catch(err => {
+//   console.log(err);
+// }); /*?+*/
+
+parser("("); /*?+*/

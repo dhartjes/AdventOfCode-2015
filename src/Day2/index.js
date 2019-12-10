@@ -7,5 +7,6 @@ import getAocInput from "../utils/aocInputFetcher";
   ); /*?+*/
 
   aocInput.split("\n"); /*?+*/
-  var a = paperProvider(aocInput); /*?+*/
+  var sqFeetPaper = paperProvider(aocInput); /*?+*/
+  var feetRibbon = ribbonProvider(aocInput); /*?+*/
 })();

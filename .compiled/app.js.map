@@ -1,1 +1,0 @@
-{"version":3,"sources":["../src/app.js"],"names":[],"mappings":";;AAAA;;AACA;;AACA;;AACA","sourcesContent":["import \"core-js\";\r\nimport \"regenerator-runtime\";\r\nimport \"./Day1/index.js\";\r\nimport \"./Day2/index.js\";\r\n"],"file":"app.js"}

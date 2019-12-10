@@ -5,6 +5,7 @@
 	"main": "index.js",
 	"scripts": {
 		"test": "jest",
+		"test:watch":"jest --watch",
 		"compile": "babel src --out-dir .compiled --source-maps --watch"
 	},
 	"jest": {

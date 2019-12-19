@@ -1,7 +1,7 @@
 import fetch from "node-fetch";
 
 const getAocInput = async url => {
-  var response = await fetch(url, {
+  let response = await fetch(url, {
     credentials: "include",
     headers: {
       Cookie:

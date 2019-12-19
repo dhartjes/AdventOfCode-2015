@@ -1,8 +1,8 @@
 const parser = input => {
   let firstVisitsBasement;
 
-  var endingFloor = Array.from(input).reduce((prev, current, index) => {
-    var acc = prev + (current === "(" ? 1 : -1);
+  let endingFloor = Array.from(input).reduce((prev, current, index) => {
+    let acc = prev + (current === "(" ? 1 : -1);
     if (firstVisitsBasement === undefined && acc === -1) {
       firstVisitsBasement = index + 1;
     }

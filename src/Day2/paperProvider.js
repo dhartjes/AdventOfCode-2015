@@ -1,14 +1,14 @@
-import { parseDimensions, getSurfaceArea, getSlack } from '../utils/ruler';
+import { parseBoxDimensions } from "../utils/dataReader";
+import { getSurfaceArea, getSlack } from "../utils/ruler";
 
 const paperProvider = boxDimensionsList => {
-  let boxDimensionsArray = parseDimensions(boxDimensionsList);
+  let boxDimensionsArray = parseBoxDimensions(boxDimensionsList);
 
-  var sum = boxDimensionsArray.reduce(
-    (accumulator, current) => accumulator + getSurfaceArea(current) + getSlack(current),
+  return boxDimensionsArray.reduce(
+    (accumulator, current) =>
+      accumulator + getSurfaceArea(current) + getSlack(current),
     0
   );
-
-  return sum;
 };
 
 export default paperProvider;

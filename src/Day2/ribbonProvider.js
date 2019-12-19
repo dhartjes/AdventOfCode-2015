@@ -1,11 +1,14 @@
-import ruler from '../utils/ruler';
+import { parseBoxDimensions } from "../utils/dataReader";
+import { getSmallestPerimeter, getVolume } from "../utils/ruler";
 
-const findPerimeters = input => {
-    var dimensions = ruler.parseDimension(input);
-    dimensions.reduce
+const ribbonProvider = boxDimensionsList => {
+  let boxDimensionsArray = parseBoxDimensions(boxDimensionsList);
 
-}
-
-export default {
-    findPerimeter: findPerimeters
+  return boxDimensionsArray.reduce(
+    (accumulator, current) =>
+      accumulator + getSmallestPerimeter(current) + getVolume(current),
+    0
+  );
 };
+
+export default ribbonProvider;

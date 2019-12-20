@@ -1,11 +1,11 @@
 {
-	"name": "@dhartjes/adventofcode-2005",
+	"name": "@dhartjes/adventofcode-2015",
 	"version": "1.0.0",
-	"description": "Advent of Code 2005",
+	"description": "Advent of Code 2015",
 	"main": "index.js",
 	"scripts": {
 		"test": "jest",
-		"test:watch":"jest --watch",
+		"test:watch": "jest --watch",
 		"compile": "babel src --out-dir .compiled --source-maps --watch"
 	},
 	"jest": {
@@ -21,6 +21,8 @@
 	"license": "ISC",
 	"dependencies": {
 		"core-js": "^3.4.4",
+		"esm": "^3.2.25",
+		"md5": "^2.2.1",
 		"node-fetch": "^2.6.0",
 		"regenerator-runtime": "^0.13.3"
 	},

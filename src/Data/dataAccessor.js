@@ -15,12 +15,7 @@ const dataAccessor = async url => {
 export default dataAccessor;
 
 export const getUrlForDay = day =>
-  ({
-    1: "https://adventofcode.com/2015/day/1/input",
-    2: "https://adventofcode.com/2015/day/2/input",
-    3: "https://adventofcode.com/2015/day/3/input",
-    5: "https://adventofcode.com/2015/day/5/input"
-  }[day] || undefined);
+  `https://adventofcode.com/2015/day/${day}/input`;
 
 export const loadDay = async day => await dataAccessor(getUrlForDay(day));
 
@@ -29,5 +24,6 @@ export const preLoadData = async () => ({
   day2Input: await loadDay(2),
   day3Input: await loadDay(2),
   day4Input: "ckczppom",
-  day5Input: await loadDay(5)
+  day5Input: await loadDay(5),
+  day6Input: await loadDay(6)
 });

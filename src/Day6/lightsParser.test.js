@@ -1,4 +1,5 @@
-import sut from "./lightsParser";
+import sut, { runLightShow } from "./lightsParser";
+import LightsArray from "./lightsArray";
 
 describe("lightsParser takes input and converts instructions to perform on lights array", () => {
   it("should read turn on as turnOn function", () => {
@@ -27,9 +28,14 @@ describe("lightsParser takes input and converts instructions to perform on light
     ]);
   });
 
-  it("should read turn off as turnOff function", () => {});
+  it("should apply instructions to a LightsArray", () => {
+    let lightsArray = new LightsArray(3, 3);
+    let instructions = sut(
+      // "turn on 0,0 through 1,2\nturn off 0,0 through 1,1"
+      "toggle 0,0 through 2,2\nturn off 2,0 through 2,2\nturn on 2,1 through 2,1"
+    );
+    runLightShow(lightsArray, instructions);
 
-  it("should read toggle as toggle function", () => {});
-
-  it("should read x1,y1 through x2,y2 as referring to specific lights in the array", () => {});
+    expect(lightsArray.totalLit).toEqual(7);
+  });
 });

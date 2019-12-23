@@ -1,7 +1,7 @@
+import lineEndingFixer from "../utils/lineEndingFixer";
+
 const boxParser = input => {
-  let dimensions = input
-    .replace(/\r\n/g, "\n")
-    .replace(/\r/g, "\n")
+  let dimensions = lineEndingFixer(input)
     .trim()
     .split("\n")
     .filter(Boolean);

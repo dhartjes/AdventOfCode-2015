@@ -1,8 +1,7 @@
-import { parseBoxDimensions } from "../utils/dataReader";
-import { getSurfaceArea, getSlack } from "../utils/ruler";
+import boxParser, { getSurfaceArea, getSlack } from "../Data/boxParser";
 
 const paperProvider = boxDimensionsList => {
-  let boxDimensionsArray = parseBoxDimensions(boxDimensionsList);
+  let boxDimensionsArray = boxParser(boxDimensionsList);
 
   return boxDimensionsArray.reduce(
     (accumulator, current) =>

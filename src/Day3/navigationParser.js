@@ -1,22 +1,4 @@
-const parseBoxDimensions = input => {
-  let dimensions = input
-    .replace(/\r\n/g, "\n")
-    .replace(/\r/g, "\n")
-    .trim()
-    .split("\n")
-    .filter(Boolean);
-
-  return dimensions.map(box => {
-    let dimensions = box.split("x");
-    return {
-      h: Number.parseInt(dimensions[0]),
-      w: Number.parseInt(dimensions[1]),
-      d: Number.parseInt(dimensions[2])
-    };
-  });
-};
-
-const parseElfDirections = (directions, santas = 1) => {
+const navigationParser = (directions, santas = 1) => {
   let santaCoords = [[0, 0]];
 
   for (let i = 1; i < santas; i++) {
@@ -70,4 +52,4 @@ const parseElfDirections = (directions, santas = 1) => {
   return houseVisitCoords;
 };
 
-export { parseBoxDimensions, parseElfDirections };
+export default navigationParser;

@@ -1,7 +1,7 @@
-import { parseElfDirections } from "../utils/dataReader";
+import navigationParser from "./navigationParser";
 
 const houseRouteMapper = (directions, santas) => {
-  let coords = parseElfDirections(directions, santas);
+  let coords = navigationParser(directions, santas);
 
   return {
     coords,

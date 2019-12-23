@@ -9,7 +9,6 @@ const miner = (key, coinCondition = "00000") => {
   let hashed = "";
   let conditionMet = () => hashed.startsWith(coinCondition, 0);
 
-  // TODO: Include private key
   while (!conditionMet()) {
     hashed = md5(key + ++index); /*?*/
   }

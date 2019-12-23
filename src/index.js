@@ -4,7 +4,7 @@ import dataAccessor, { preLoadData, loadDay } from "./Data/dataAccessor";
 import houseRouteMapper from "./Day3/houseRouteMapper";
 import ribbonProvider from "./Day2/ribbonProvider";
 import miner from "./Day4/miner";
-import lightsParser, { runLightShow } from "./Day6/lightsParser";
+import lightsParser from "./Day6/lightsParser";
 import { wasNice, isNice } from "./Day5/alignmentChecker";
 import LightsArray from "./Day6/lightsArray";
 
@@ -22,7 +22,7 @@ import LightsArray from "./Day6/lightsArray";
   let aoc = await loadDay(6); /*?+*/
   let lightsArray = new LightsArray(1000, 1000);
   let instructions = lightsParser(aoc); /*?+*/
-  runLightShow(lightsArray, instructions); /*?+*/
+  lightsArray.runLightsShow(instructions); /*?+*/
   lightsArray.totalLit; /*?+*/
 })();
 
@@ -32,5 +32,5 @@ lightsArray.totalLit; /*?+*/
 let instructions = lightsParser(
   "turn on 1,1 through 2,2\nturn on 0,0 through 1,1"
 ); /*?+*/
-runLightShow(lightsArray, instructions);
+lightsArray.runLightsShow(instructions);
 lightsArray.totalLit; /*?+*/

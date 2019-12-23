@@ -18,16 +18,3 @@ export default input => {
 
   return instructions;
 };
-
-export const runLightShow = (lightsArray, instructions) => {
-  instructions.forEach(instruction =>
-    ({
-      "turn on": () =>
-        lightsArray.turnOn(instruction.startingPoint, instruction.endingPoint),
-      "turn off": () =>
-        lightsArray.turnOff(instruction.startingPoint, instruction.endingPoint),
-      toggle: () =>
-        lightsArray.toggle(instruction.startingPoint, instruction.endingPoint)
-    }[instruction.command]())
-  );
-};

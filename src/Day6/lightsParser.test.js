@@ -1,4 +1,4 @@
-import sut, { runLightShow } from "./lightsParser";
+import sut from "./lightsParser";
 import LightsArray from "./lightsArray";
 
 describe("lightsParser takes input and converts instructions to perform on lights array", () => {
@@ -26,16 +26,5 @@ describe("lightsParser takes input and converts instructions to perform on light
         endingPoint: { x: 500, y: 500 }
       }
     ]);
-  });
-
-  it("should apply instructions to a LightsArray", () => {
-    let lightsArray = new LightsArray(3, 3);
-    let instructions = sut(
-      // "turn on 0,0 through 1,2\nturn off 0,0 through 1,1"
-      "toggle 0,0 through 2,2\nturn off 2,0 through 2,2\nturn on 2,1 through 2,1"
-    );
-    runLightShow(lightsArray, instructions);
-
-    expect(lightsArray.totalLit).toEqual(7);
   });
 });

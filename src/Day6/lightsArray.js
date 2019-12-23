@@ -48,6 +48,18 @@ class LightsArray {
       endingPoint,
       (x, y) => (this.grid[x][y] = this.grid[x][y] === 0 ? 1 : 0)
     );
+
+  runLightsShow = instructions =>
+    instructions.forEach(instruction =>
+      ({
+        "turn on": () =>
+          this.turnOn(instruction.startingPoint, instruction.endingPoint),
+        "turn off": () =>
+          this.turnOff(instruction.startingPoint, instruction.endingPoint),
+        toggle: () =>
+          this.toggle(instruction.startingPoint, instruction.endingPoint)
+      }[instruction.command]())
+    );
 }
 
 export default LightsArray;

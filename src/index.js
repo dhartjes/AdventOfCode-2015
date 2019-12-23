@@ -11,26 +11,29 @@ import LightsArray from "./Day6/lightsArray";
 (async () => {
   // Async scratchpad
   //let aocData = await preLoadData(); /*?+*/
+
+  // Day1
   // directionsParser(aocData.day1Input); /*?+*/
+
+  // Day2
   // paperProvider(aocData.day2Input); /*?+*/
   // ribbonProvider(aocData.day2Input); /*?+*/
+
+  // Day3
   // houseRouteMapper(aocData.day3Input); /*?+*/
   // houseRouteMapper(aocData.day3Input, 2); /*?+*/
+
+  // Day4
   // miner(aocData.day4Input, "000000"); /*?+*/
+
+  // Day5
   // aocData.day5Input.split("\n").filter(wasNice).length; /*?+*/
   // aocData.day5Input.split("\n").filter(isNice).length; /*?+*/
-  let aoc = await loadDay(6); /*?+*/
+
+  // Day6
   let lightsArray = new LightsArray(1000, 1000);
-  let instructions = lightsParser(aoc); /*?+*/
-  lightsArray.runLightsShow(instructions); /*?+*/
+  lightsArray.runLightsShow(lightsParser(await loadDay(6))); /*?+*/
   lightsArray.totalLit; /*?+*/
 })();
 
 // Scratchpad
-let lightsArray = new LightsArray(3, 3); /*?+*/
-lightsArray.totalLit; /*?+*/
-let instructions = lightsParser(
-  "turn on 1,1 through 2,2\nturn on 0,0 through 1,1"
-); /*?+*/
-lightsArray.runLightsShow(instructions);
-lightsArray.totalLit; /*?+*/

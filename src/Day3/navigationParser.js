@@ -1,3 +1,5 @@
+import Point from "../Model/Point";
+
 const navigationParser = (directions, santas = 1) => {
   let santaCoords = [[0, 0]];
 
@@ -5,11 +7,11 @@ const navigationParser = (directions, santas = 1) => {
     santaCoords.push([0, 0]);
   }
 
-  let houseVisitCoords = [{ x: 0, y: 0 }];
+  let houseVisitCoords = [new Point(0, 0)];
 
   const checkForDupeAndPush = (x, y) =>
     houseVisitCoords.findIndex(f => f.x == x && f.y == y) == -1
-      ? houseVisitCoords.push({ x, y })
+      ? houseVisitCoords.push(new Point(x, y))
       : undefined;
 
   const goNorth = si =>

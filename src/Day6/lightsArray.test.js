@@ -1,5 +1,6 @@
 import Sut from "./LightsArray";
 import lightsParser from "./lightsParser";
+import Point from "../Model/Point";
 
 describe("lightsArray maintains state of the lights between instructions", () => {
   let sut;
@@ -17,51 +18,51 @@ describe("lightsArray maintains state of the lights between instructions", () =>
 
   it("should be higher when turning lights on", () => {
     expect(sut.totalLight).toEqual(0);
-    sut.turnOn({ x: 0, y: 0 }, { x: 1, y: 0 });
+    sut.turnOn(new Point(0, 0), new Point(1, 0));
     expect(sut.totalLight).toEqual(2);
 
-    sut.turnOn({ x: 0, y: 2 }, { x: 0, y: 2 });
+    sut.turnOn(new Point(0, 2), new Point(0, 2));
     expect(sut.totalLight).toEqual(3);
 
-    sut.turnOn({ x: 0, y: 1 }, { x: 2, y: 1 });
+    sut.turnOn(new Point(0, 1), new Point(2, 1));
     expect(sut.totalLight).toEqual(6);
   });
 
   it("should be lower when turning lights off", () => {
-    sut.turnOn({ x: 0, y: 0 }, { x: 2, y: 2 });
+    sut.turnOn(new Point(0, 0), new Point(2, 2));
     expect(sut.totalLight).toEqual(9);
-    sut.turnOff({ x: 0, y: 0 }, { x: 1, y: 0 });
+    sut.turnOff(new Point(0, 0), new Point(1, 0));
     expect(sut.totalLight).toEqual(7);
 
-    sut.turnOff({ x: 0, y: 2 }, { x: 0, y: 2 });
+    sut.turnOff(new Point(0, 2), new Point(0, 2));
     expect(sut.totalLight).toEqual(6);
 
-    sut.turnOff({ x: 2, y: 0 }, { x: 2, y: 0 });
+    sut.turnOff(new Point(2, 0), new Point(2, 0));
     expect(sut.totalLight).toEqual(5);
 
-    sut.turnOff({ x: 0, y: 1 }, { x: 2, y: 1 });
+    sut.turnOff(new Point(0, 1), new Point(2, 1));
     expect(sut.totalLight).toEqual(2);
   });
 
   it("should invert when toggling lights", () => {
-    sut.turnOn({ x: 2, y: 0 }, { x: 2, y: 2 });
+    sut.turnOn(new Point(2, 0), new Point(2, 2));
     expect(sut.totalLight).toEqual(3);
-    sut.toggle({ x: 0, y: 0 }, { x: 2, y: 2 });
+    sut.toggle(new Point(0, 0), new Point(2, 2));
     expect(sut.totalLight).toEqual(6);
   });
 
   it("should stay on when turning on an already on light", () => {
-    sut.turnOn({ x: 0, y: 0 }, { x: 2, y: 0 });
+    sut.turnOn(new Point(0, 0), new Point(2, 0));
     expect(sut.totalLight).toEqual(3);
 
-    sut.turnOn({ x: 0, y: 0 }, { x: 2, y: 1 });
+    sut.turnOn(new Point(0, 0), new Point(2, 1));
     expect(sut.totalLight).toEqual(6);
   });
   it("should stay off when turning off an already off light", () => {
-    sut.turnOn({ x: 0, y: 0 }, { x: 2, y: 1 });
+    sut.turnOn(new Point(0, 0), new Point(2, 1));
     expect(sut.totalLight).toEqual(6);
 
-    sut.turnOff({ x: 0, y: 1 }, { x: 2, y: 2 });
+    sut.turnOff(new Point(0, 1), new Point(2, 2));
     expect(sut.totalLight).toEqual(3);
   });
 
@@ -83,8 +84,8 @@ describe("lightsArray maintains state of the lights between instructions", () =>
   });
 
   it("should increase brightness of grid", () => {
-    sut.increase({ x: 0, y: 0 }, { x: 2, y: 2 });
-    sut.increase({ x: 0, y: 0 }, { x: 0, y: 0 }, 3);
+    sut.increase(new Point(0, 0), new Point(2, 2));
+    sut.increase(new Point(0, 0), new Point(0, 0), 3);
     expect(sut.totalLight).toEqual(12);
   });
 });

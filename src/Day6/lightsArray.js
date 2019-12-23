@@ -1,3 +1,5 @@
+import Point from "../Model/Point";
+
 class LightsArray {
   grid;
   height;
@@ -6,12 +8,16 @@ class LightsArray {
     this.height = height;
     this.width = width;
     this.grid = [height];
-    this.scanArray({ x: 0, y: 0 }, { x: height - 1, y: width - 1 }, (x, y) => {
-      if (y === 0) {
-        this.grid[x] = [width];
+    this.scanArray(
+      new Point(0, 0),
+      new Point(height - 1, width - 1),
+      (x, y) => {
+        if (y === 0) {
+          this.grid[x] = [width];
+        }
+        this.grid[x][y] = 0;
       }
-      this.grid[x][y] = 0;
-    });
+    );
   }
 
   get totalLight() {
@@ -21,8 +27,8 @@ class LightsArray {
   countLit() {
     let sum = 0;
     this.scanArray(
-      { x: 0, y: 0 },
-      { x: this.height - 1, y: this.width - 1 },
+      new Point(0, 0),
+      new Point(this.height - 1, this.width - 1),
       (x, y) => (sum += this.grid[x][y])
     );
     return sum;

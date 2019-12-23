@@ -14,7 +14,7 @@ class LightsArray {
     });
   }
 
-  get totalLit() {
+  get totalLight() {
     return this.countLit();
   }
 
@@ -39,6 +39,18 @@ class LightsArray {
   turnOn = (startingPoint, endingPoint) =>
     this.scanArray(startingPoint, endingPoint, (x, y) => (this.grid[x][y] = 1));
 
+  increase = (startingPoint, endingPoint, amount = 1) =>
+    this.scanArray(
+      startingPoint,
+      endingPoint,
+      (x, y) => (this.grid[x][y] += amount)
+    );
+
+  decrease = (startingPoint, endingPoint) =>
+    this.scanArray(startingPoint, endingPoint, (x, y) => {
+      if (this.grid[x][y] > 0) this.grid[x][y] -= 1;
+    });
+
   turnOff = (startingPoint, endingPoint) =>
     this.scanArray(startingPoint, endingPoint, (x, y) => (this.grid[x][y] = 0));
 
@@ -49,7 +61,7 @@ class LightsArray {
       (x, y) => (this.grid[x][y] = this.grid[x][y] === 0 ? 1 : 0)
     );
 
-  runLightsShow = instructions =>
+  runLightsShowOld = instructions =>
     instructions.forEach(instruction =>
       ({
         "turn on": () =>
@@ -58,6 +70,18 @@ class LightsArray {
           this.turnOff(instruction.startingPoint, instruction.endingPoint),
         toggle: () =>
           this.toggle(instruction.startingPoint, instruction.endingPoint)
+      }[instruction.command]())
+    );
+
+  runLightsShow = instructions =>
+    instructions.forEach(instruction =>
+      ({
+        "turn on": () =>
+          this.increase(instruction.startingPoint, instruction.endingPoint),
+        "turn off": () =>
+          this.decrease(instruction.startingPoint, instruction.endingPoint),
+        toggle: () =>
+          this.increase(instruction.startingPoint, instruction.endingPoint, 2)
       }[instruction.command]())
     );
 }

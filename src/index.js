@@ -31,9 +31,14 @@ import LightsArray from "./Day6/lightsArray";
   // aocData.day5Input.split("\n").filter(isNice).length; /*?+*/
 
   // Day6
+  let instructions = await loadDay(6);
   let lightsArray = new LightsArray(1000, 1000);
-  lightsArray.runLightsShow(lightsParser(await loadDay(6))); /*?+*/
-  lightsArray.totalLit; /*?+*/
+  lightsArray.runLightsShowOld(lightsParser(instructions)); /*?+*/
+  lightsArray.totalLight; /*?+*/
+
+  lightsArray = new LightsArray(1000, 1000);
+  lightsArray.runLightsShow(lightsParser(instructions));
+  lightsArray.totalLight; /*?+*/
 })();
 
 // Scratchpad

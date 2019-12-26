@@ -1,5 +1,5 @@
 import lineEndingFixer from "../utils/lineEndingFixer";
-import CircuitBoard from "./circuitBoard";
+import CircuitBoard from "../Model/CircuitBoard";
 
 export const determineWireType = commandString => {
   let found = commandString.match(/[A-Z]+/);

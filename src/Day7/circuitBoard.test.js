@@ -1,4 +1,4 @@
-import CircuitBoard from "./circuitBoard";
+import CircuitBoard from "../Model/CircuitBoard";
 import wireParser from "./wireParser";
 
 let sut;

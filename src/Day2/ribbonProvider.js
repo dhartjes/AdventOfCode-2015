@@ -1,4 +1,7 @@
-import boxParser, { getSmallestPerimeter, getVolume } from "../Data/boxParser";
+import boxParser, {
+  getSmallestPerimeter,
+  getVolume
+} from "../Domain/boxParser";
 
 const ribbonProvider = boxDimensionsList => {
   let boxDimensionsArray = boxParser(boxDimensionsList);

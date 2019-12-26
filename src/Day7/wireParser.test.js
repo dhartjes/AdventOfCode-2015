@@ -1,115 +1,70 @@
-import sut, { operate } from "./wireParser";
+import sut from "./wireParser";
 
 describe("wireParser takes wire instructions and assembles circuit board", () => {
-  it("should create a wire with an int value", () => {
-    let x = operate("start", 123);
-    expect(x()).toBe(123);
-    let y = operate("start", 456);
-    expect(y()).toBe(456);
-  });
-
-  it("should perform a bitwise AND operation", () => {
-    let x = operate("start", 123);
-    let y = operate("start", 456);
-    let d = operate("and", x(), y());
-    expect(d()).toBe(72);
-  });
-
-  it("should perform a bitwise OR operation", () => {
-    let x = operate("start", 123);
-    let y = operate("start", 456);
-    let e = operate("or", x(), y());
-    expect(e()).toBe(507);
-  });
-
-  it("should perform a bitwise LShift operation", () => {
-    let x = operate("start", 123);
-    let f = operate("lshift", x(), 2);
-    expect(f()).toBe(492);
-  });
-
-  it("should perform a bitwise RShift operation", () => {
-    let y = operate("start", 456);
-    let g = operate("rshift", y(), 2);
-    expect(g()).toBe(114);
-  });
-
-  it("should perform a bitwise NOT operation", () => {
-    let x = operate("start", 123);
-    let y = operate("start", 456);
-    let h = operate("not", x());
-    expect(h()).toBe(65412);
-    let i = operate("not", y());
-    expect(i()).toBe(65079);
-  });
-
   it("should parse wire instructions into appropriate wire types", () => {
-    let x = sut.readInstructions("123 -> x");
-    expect(x).toStrictEqual([
+    let circuitBoard = sut.assembleCircuitBoard("123 -> x");
+    expect(circuitBoard.circuits).toStrictEqual([
       {
         name: "x",
         operands: [123],
-        operation: "start"
+        operation: "start",
+        value: 123
       }
     ]);
 
-    x = sut.readInstructions("af AND ah -> ai");
-    expect(x).toStrictEqual([
+    circuitBoard = sut.assembleCircuitBoard("af AND ah -> ai");
+    expect(circuitBoard.circuits).toStrictEqual([
       {
         name: "ai",
         operands: ["af", "ah"],
-        operation: "and"
+        operation: "and",
+        value: undefined
       }
     ]);
 
-    x = sut.readInstructions("NOT lk -> ll");
-    expect(x).toStrictEqual([
+    circuitBoard = sut.assembleCircuitBoard("NOT lk -> ll");
+    expect(circuitBoard.circuits).toStrictEqual([
       {
         name: "ll",
         operands: ["lk"],
-        operation: "not"
+        operation: "not",
+        value: undefined
       }
     ]);
 
-    x = sut.readInstructions("hz RSHIFT 1 -> is");
-    expect(x).toStrictEqual([
+    circuitBoard = sut.assembleCircuitBoard("hz RSHIFT 1 -> is");
+    expect(circuitBoard.circuits).toStrictEqual([
       {
         name: "is",
         operands: ["hz", 1],
-        operation: "rshift"
+        operation: "rshift",
+        value: undefined
       }
     ]);
 
-    x = sut.readInstructions("an LSHIFT 15 -> ar");
-    expect(x).toStrictEqual([
+    circuitBoard = sut.assembleCircuitBoard("an LSHIFT 15 -> ar");
+    expect(circuitBoard.circuits).toStrictEqual([
       {
         name: "ar",
         operands: ["an", 15],
-        operation: "lshift"
+        operation: "lshift",
+        value: undefined
       }
     ]);
 
-    x = sut.readInstructions("hg OR hh -> hi");
-    expect(x).toStrictEqual([
+    circuitBoard = sut.assembleCircuitBoard("hg OR hh -> hi");
+    expect(circuitBoard.circuits).toStrictEqual([
       {
         name: "hi",
         operands: ["hg", "hh"],
-        operation: "or"
+        operation: "or",
+        value: undefined
       }
     ]);
   });
 
-  it("should convert instructions to runnable operation", () => {
-    let x = operate("start", 123);
-    let y = operate("start", 456);
-
-    let instructions = sut.readInstructions("hg OR hh -> hi");
-    let e = operate(instructions[0].operation, x(), y());
-    expect(e()).toBe(507);
-  });
-
   it("should generate multiple instructions", () => {
-    let instructions = sut.readInstructions(`
+    let circuitBoard = sut.assembleCircuitBoard(`
 123 -> x
 af AND ah -> ai
 NOT lk -> ll
@@ -118,59 +73,43 @@ an LSHIFT 15 -> ar
 ht OR hh -> hi
 `);
 
-    expect(instructions).toStrictEqual([
+    expect(circuitBoard.circuits).toStrictEqual([
       {
         name: "x",
         operands: [123],
-        operation: "start"
+        operation: "start",
+        value: 123
       },
       {
         name: "ai",
         operands: ["af", "ah"],
-        operation: "and"
+        operation: "and",
+        value: undefined
       },
       {
         name: "ll",
         operands: ["lk"],
-        operation: "not"
+        operation: "not",
+        value: undefined
       },
       {
         name: "is",
         operands: ["hz", 1],
-        operation: "rshift"
+        operation: "rshift",
+        value: undefined
       },
       {
         name: "ar",
         operands: ["an", 15],
-        operation: "lshift"
+        operation: "lshift",
+        value: undefined
       },
       {
         name: "hi",
         operands: ["ht", "hh"],
-        operation: "or"
+        operation: "or",
+        value: undefined
       }
     ]);
-  });
-
-  it("should daisy chain operations", () => {
-    let instructions = sut.readInstructions(`123 -> x
-456 -> y
-x AND y -> d
-x OR y -> e
-x LSHIFT 2 -> f
-y RSHIFT 2 -> g
-NOT x -> h
-NOT y -> i`);
-
-    expect(instructions.length).toBe(8);
-
-    expect(sut.runToWire(instructions, "x")).toBe(123);
-    expect(sut.runToWire(instructions, "y")).toBe(456);
-    expect(sut.runToWire(instructions, "d")).toBe(72);
-    expect(sut.runToWire(instructions, "e")).toBe(507);
-    expect(sut.runToWire(instructions, "f")).toBe(492);
-    expect(sut.runToWire(instructions, "g")).toBe(114);
-    expect(sut.runToWire(instructions, "h")).toBe(65412);
-    expect(sut.runToWire(instructions, "i")).toBe(65079);
   });
 });

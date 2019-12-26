@@ -1,4 +1,4 @@
-import boxParser, { getSurfaceArea, getSlack } from "../Data/boxParser";
+import boxParser, { getSurfaceArea, getSlack } from "../Domain/boxParser";
 
 const paperProvider = boxDimensionsList => {
   let boxDimensionsArray = boxParser(boxDimensionsList);

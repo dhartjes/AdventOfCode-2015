@@ -7,6 +7,7 @@ import miner from "./Day4/miner";
 import lightsParser from "./Day6/lightsParser";
 import { wasNice, isNice } from "./Day5/alignmentChecker";
 import LightsArray from "./Day6/lightsArray";
+import wireParser from "./Day7/wireParser";
 
 (async () => {
   // Async scratchpad
@@ -33,7 +34,11 @@ import LightsArray from "./Day6/lightsArray";
   // lightsArray.runLightsShow(lightsParser(instructions));
   // lightsArray.totalLight; /*?+*/
   // Day7
-  let wireInstructions = await loadDay(7); /*?+*/
+  let circuitBoard = wireParser.assembleCircuitBoard(await loadDay(7)); /*?+*/
+  let result = circuitBoard.resolveCircuit("a"); /*?+*/
+  circuitBoard.circuits.forEach(item => (item.value = undefined));
+  circuitBoard.circuits.find(x => x.name === "b").value = result;
+  circuitBoard.resolveCircuit("a"); /*?+*/
 })();
 
 // Scratchpad

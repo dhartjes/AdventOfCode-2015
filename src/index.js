@@ -32,6 +32,8 @@ import LightsArray from "./Day6/lightsArray";
   // lightsArray = new LightsArray(1000, 1000);
   // lightsArray.runLightsShow(lightsParser(instructions));
   // lightsArray.totalLight; /*?+*/
+  // Day7
+  let wireInstructions = await loadDay(7); /*?+*/
 })();
 
 // Scratchpad

@@ -36,8 +36,8 @@ import wireParser from "./Day7/wireParser";
   // Day7
   let circuitBoard = wireParser.assembleCircuitBoard(await loadDay(7)); /*?+*/
   let result = circuitBoard.resolveCircuit("a"); /*?+*/
-  circuitBoard.circuits.forEach(item => (item.value = undefined));
-  circuitBoard.circuits.find(x => x.name === "b").value = result;
+  circuitBoard.circuits.forEach(item => item.reset());
+  circuitBoard.circuits.find(x => x.targetCircuit === "b").value = result;
   circuitBoard.resolveCircuit("a"); /*?+*/
 })();
 

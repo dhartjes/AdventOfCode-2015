@@ -1,5 +1,6 @@
 import lineEndingFixer from "../utils/lineEndingFixer";
 import CircuitBoard from "../Model/CircuitBoard";
+import Circuit from "../Model/Circuit";
 
 export const determineWireType = commandString => {
   let found = commandString.match(/[A-Z]+/);
@@ -23,17 +24,14 @@ const wireParser = {
 
     lines.forEach(line => {
       let split = line.split(" -> ");
-      let operands = determineOperands(split[0]);
-      let wires = {
-        name: split[1],
-        operation: determineWireType(split[0]),
-        operands,
-        value:
-          operands[1] === undefined && !isNaN(operands[0])
-            ? operands[0]
-            : undefined
-      };
-      circuitBoard.circuits.push(wires);
+
+      let circuit = new Circuit(
+        split[1],
+        determineOperands(split[0]),
+        determineWireType(split[0])
+      );
+
+      circuitBoard.circuits.push(circuit);
     });
 
     return circuitBoard;

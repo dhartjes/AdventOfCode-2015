@@ -1,5 +1,6 @@
 import CircuitBoard from "./CircuitBoard";
 import wireParser from "../Day7/wireParser";
+import Circuit from "./Circuit";
 
 let sut;
 
@@ -9,12 +10,10 @@ describe("circuitBoard has an array of wires and can find the shortest path to a
   });
 
   it("should convert instructions to runnable operation", () => {
-    let x = sut.operate("start", 123);
-    let y = sut.operate("start", 456);
-
     sut = wireParser.assembleCircuitBoard("hg OR hh -> hi");
-    let e = sut.operate(sut.circuits[0].operation, x(), y());
-    expect(e()).toBe(507);
+    sut.circuits.push(new Circuit("hg", [123], "start"));
+    sut.circuits.push(new Circuit("hh", [456], "start"));
+    expect(sut.resolveCircuit("hi")).toBe(507);
   });
 
   it("should daisy chain operations", () => {

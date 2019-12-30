@@ -18,7 +18,6 @@ class Circuit {
     this.targetCircuit = targetCircuit;
     this.operands = operands;
     this.operation = operations(operation);
-    this.reset();
   }
 
   go = () => {
@@ -34,9 +33,7 @@ class Circuit {
     return this.value;
   };
 
-  reset = () =>
-    (this.value =
-      this.operation.name === "start" ? this.operands[0] : undefined);
+  reset = () => (this.value = undefined);
 }
 
 export default Circuit;

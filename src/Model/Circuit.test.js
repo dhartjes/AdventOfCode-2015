@@ -63,21 +63,17 @@ describe("A Circuit contains the current value of a signal being transmitted and
     expect(sut.value).toBe(72);
   });
 
-  it("should reset circuit with start operation to original value", () => {
-    sut.go();
-    expect(sut.value).toBe(123);
-    sut.reset();
-    // Note: Resets to original value for operation type 'start'
-    expect(sut.value).toBe(123);
-  });
-
   it("should reset circuits to undefined", () => {
-    sut = new Circuit("a", [123], "not");
     sut.go();
-    expect(sut.value).toBe(65412);
+    expect(sut.value).toBe(123);
     sut.reset();
     expect(sut.value).toBeUndefined();
   });
 
-  it("should know the name of the circuit that follows", () => {});
+  it("should know the name of the circuit that follows", () => {
+    expect(sut.targetCircuit).toBe("a");
+
+    sut = new Circuit("ai", [123, 456], "and");
+    expect(sut.targetCircuit).toBe("ai");
+  });
 });

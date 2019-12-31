@@ -15,6 +15,7 @@ import {
 import LightsArray from "./Day6/lightsArray";
 import wireParser from "./Day7/wireParser";
 import characterCounter from "./Day8/characterCounter";
+import routeParser from "./Day9/routeParser";
 
 (async () => {
   // Async scratchpad
@@ -51,6 +52,10 @@ import characterCounter from "./Day8/characterCounter";
   // let partOne = results.originalSize - results.decodedSize; /*?+*/
   // let partTwo = results.encodedSize - results.originalSize; /*?+*/
   // Day9
+  let input = await loadDay(9); /*?+*/
+  let results = routeParser(input); /*?+*/
+
+
 
 })();
 

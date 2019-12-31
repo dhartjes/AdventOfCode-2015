@@ -8,6 +8,7 @@ import lightsParser from "./Day6/lightsParser";
 import { wasNice, isNice } from "./Day5/alignmentChecker";
 import LightsArray from "./Day6/lightsArray";
 import wireParser from "./Day7/wireParser";
+import characterCounter from "./Day8/characterCounter";
 
 (async () => {
   // Async scratchpad
@@ -34,11 +35,15 @@ import wireParser from "./Day7/wireParser";
   // lightsArray.runLightsShow(lightsParser(instructions));
   // lightsArray.totalLight; /*?+*/
   // Day7
-  let circuitBoard = wireParser.assembleCircuitBoard(await loadDay(7)); /*?+*/
-  let result = circuitBoard.resolveCircuit("a"); /*?+*/
-  circuitBoard.circuits.forEach(item => item.reset());
-  circuitBoard.circuits.find(x => x.targetCircuit === "b").value = result;
-  circuitBoard.resolveCircuit("a"); /*?+*/
+  // let circuitBoard = wireParser.assembleCircuitBoard(await loadDay(7)); /*?+*/
+  // let result = circuitBoard.resolveCircuit("a"); /*?+*/
+  // circuitBoard.circuits.forEach(item => item.reset());
+  // circuitBoard.circuits.find(x => x.targetCircuit === "b").value = result;
+  // circuitBoard.resolveCircuit("a"); /*?+*/
+  // Day8
+  let results = characterCounter(await loadDay(8)); /*?+*/
+  let partOne = results.originalSize - results.reducedSize; /*?+*/
+  let partTwo = results.originalSize - results.reducedSize; /*?+*/
 })();
 
 // Scratchpad

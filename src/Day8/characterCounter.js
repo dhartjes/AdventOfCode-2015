@@ -1,33 +1,36 @@
 import lineEndingFixer from "../utils/lineEndingFixer";
 
-export default function(input) {
+export default function (input) {
   let lines = input //lineEndingFixer(input)
     .trim()
     .split("\n")
     .filter(Boolean);
 
-  let reducedSize = lines.reduce(
+  let decoded = lines.reduce(
     (prev, current) => prev + reduceLine(current),
-    0
+    ''
   );
 
-  let increasedSize = lines.reduce(
+  let encoded = lines.reduce(
     (prev, current) => prev + augmentLine(current),
-    0
+    ''
   );
 
   return {
-    reducedSize,
+    decoded,
+    decodedSize: decoded.length,
     originalSize: input.replace(/\s/g, "").length,
-    increasedSize
+    encoded,
+    encodedSize: encoded.length
   };
 }
 
 const augmentLine = input => {
   let lessWhiteSpaceChars = input.replace(/\s/g, "");
-  let withEscapedBackslashes = lessWhiteSpaceChars.replace(/\\\\/g, "\\\\\\\\");
+  let withEscapedBackslashes = lessWhiteSpaceChars.replace(/\\/g, "\\\\");
   let withEscapedQuotes = withEscapedBackslashes.replace(/"/g, '\\"');
-  return withEscapedQuotes.length;
+  let withSurroundingQuotes = `"${withEscapedQuotes}"`;
+  return withSurroundingQuotes;
 };
 
 const reduceLine = input => {
@@ -39,5 +42,5 @@ const reduceLine = input => {
     1,
     lessCharCodes.length - 1
   );
-  return lessOpenAndCloseQuotes.length;
+  return lessOpenAndCloseQuotes;
 };

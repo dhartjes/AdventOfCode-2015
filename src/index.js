@@ -1,11 +1,17 @@
 import paperProvider from "./Day2/paperProvider";
 import directionsParser from "./Day1/directionsParser";
-import dataAccessor, { preLoadData, loadDay } from "./Data/dataAccessor";
+import dataAccessor, {
+  preLoadData,
+  loadDay
+} from "./Data/dataAccessor";
 import houseRouteMapper from "./Day3/houseRouteMapper";
 import ribbonProvider from "./Day2/ribbonProvider";
 import miner from "./Day4/miner";
 import lightsParser from "./Day6/lightsParser";
-import { wasNice, isNice } from "./Day5/alignmentChecker";
+import {
+  wasNice,
+  isNice
+} from "./Day5/alignmentChecker";
 import LightsArray from "./Day6/lightsArray";
 import wireParser from "./Day7/wireParser";
 import characterCounter from "./Day8/characterCounter";
@@ -42,8 +48,8 @@ import characterCounter from "./Day8/characterCounter";
   // circuitBoard.resolveCircuit("a"); /*?+*/
   // Day8
   let results = characterCounter(await loadDay(8)); /*?+*/
-  let partOne = results.originalSize - results.reducedSize; /*?+*/
-  let partTwo = results.originalSize - results.reducedSize; /*?+*/
+  let partOne = results.originalSize - results.decodedSize; /*?+*/
+  let partTwo = results.encodedSize - results.originalSize; /*?+*/
 })();
 
 // Scratchpad

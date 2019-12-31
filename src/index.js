@@ -47,9 +47,11 @@ import characterCounter from "./Day8/characterCounter";
   // circuitBoard.circuits.find(x => x.targetCircuit === "b").value = result;
   // circuitBoard.resolveCircuit("a"); /*?+*/
   // Day8
-  let results = characterCounter(await loadDay(8)); /*?+*/
-  let partOne = results.originalSize - results.decodedSize; /*?+*/
-  let partTwo = results.encodedSize - results.originalSize; /*?+*/
+  // let results = characterCounter(await loadDay(8)); /*?+*/
+  // let partOne = results.originalSize - results.decodedSize; /*?+*/
+  // let partTwo = results.encodedSize - results.originalSize; /*?+*/
+  // Day9
+
 })();
 
 // Scratchpad

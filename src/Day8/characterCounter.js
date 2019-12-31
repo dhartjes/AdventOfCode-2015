@@ -1,7 +1,5 @@
-import lineEndingFixer from "../utils/lineEndingFixer";
-
 export default function (input) {
-  let lines = input //lineEndingFixer(input)
+  let lines = input
     .trim()
     .split("\n")
     .filter(Boolean);

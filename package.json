@@ -24,7 +24,7 @@
     "core-js": "^3.4.4",
     "esm": "^3.2.25",
     "md5": "^2.2.1",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.1",
     "regenerator-runtime": "^0.13.3"
   },
   "devDependencies": {
